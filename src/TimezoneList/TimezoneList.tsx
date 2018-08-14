@@ -1,6 +1,8 @@
 import * as moment from 'moment-timezone';
 import * as React from 'react';
 
+import SingleTimezone from './SingleTimezone';
+
 export interface Timezone {
   name: string;
   timezone: string;
@@ -44,10 +46,7 @@ export class TimezoneList extends React.Component<TimezoneListProps, TimezoneLis
 
   private listTimezones() {
     return this.state.timezones.map((timezone: Timezone, index: number) => (
-      <div key={index}>
-        <div>{timezone.name}</div>
-        <div>{moment.tz(this.props.currentTime, timezone.timezone).toString()}</div>        
-      </div>
+      <SingleTimezone {...timezone} currentTime={this.props.currentTime} key={index} /> 
     ));
   }
 }
